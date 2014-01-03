@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="">
+<head>
+	<title>Növénybiztosítási ajánlat számítás</title>
+	<meta charset="utf-8" />
+</head>
+<body ng-controller="OfferController">
+<h1>Növénybiztosítási ajánlat számítás</h1>
+<input type="text" ng-model />
+<input type="checkbox" ng-model />
+<button ng-click="addButtonClick()">Hozzáad</button>
+<table>
+	<th>
+		<td>Megnevezés</td>
+		<td>Hasznosítási kód</td>
+		<td>Termőterület (ha)</td>
+		<td>Hozam (t/ha)</td>
+		<td>Egységár (Ft/t)</td>
+		<td>Termény értéke (Ft/ha)</td>
+		<td>Biztosítási értéke (Ft)</td>
+		<td>Jégeső díjtétel</td>
+		<td>Fagy díjtétel</td>
+		<td>Számított díj összesen (Ft)</td>
+		<td></td>
+	</th>
+	<tr ng-repeat="offer in offers">
+		Itt tartok...
+	</tr>
+</table>
+</body>
+</html>
