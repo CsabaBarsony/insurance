@@ -40,34 +40,47 @@
 					<p>{{offer.plant.code}}</p>
 				</td>
 				<td>
-					<input ng-model="offer.area" />
+					<input type="number" ng-model="offer.area" />
 				</td>
 				<td>
-					<input ng-model="offer.render" />
+					<input type="number" ng-model="offer.render" />
 				</td>
 				<td>
-					<input ng-model="offer.unitPrice" />
+					<input type="number" ng-model="offer.unitPrice" />
 				</td>
 				<td>
-					<p>{{getProductValue($index)}}</p>
+					<p>{{getProductValue($index) | number:2}}</p>
 				</td>
 				<td>
-					<p>{{getInsuranceValue($index)}}</p>
+					<p>{{getInsuranceValue($index) | number:2}}</p>
 				</td>
 				<td>
 					<input type="checkbox" ng-model="offer.hail" />
-					<p>{{getHailFee($index)}}</p>
+					<p>{{getHailFee($index) | number:2}}</p>
 				</td>
 				<td>
 					<input type="checkbox" ng-model="offer.frost" />
-					<p>{{getFrostFee($index)}}</p>
+					<p>{{getFrostFee($index) | number:2}}</p>
 				</td>
 				<td>
-					<p>{{sumPrice}}</p>
+					<p>{{getSumPrice($index) | number:2}}</p>
 				</td>
 				<td>
 					<button ng-click="remove($index)">Törlés</button>
 				</td>
+			</tr>
+			<tr>
+				<td>Összesen:</td>
+				<td></td>
+				<td>{{getSumArea()}}</td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>{{getSumInsuranceValue() | number:2}}</td>
+				<td>{{getSumHailFee() | number:2}}</td>
+				<td>{{getSumFrostFee() | number:2}}</td>
+				<td>{{getEndPrice() | number:2}}</td>
+				<td></td>
 			</tr>
 		</tbody>
 	</table>
