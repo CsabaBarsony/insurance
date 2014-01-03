@@ -1,11 +1,4 @@
 function OfferController($scope){
-	$scope.plant = "";
-	$scope.area = 2;
-	$scope.render = 3;
-	$scope.unitPrice = 4;
-	$scope.hail = true;
-	$scope.frost = false;
-	$scope.offers = [];
 	$scope.plants = [
 		{
 			name: "Búza",
@@ -26,6 +19,13 @@ function OfferController($scope){
 			frostFactor: 1.62
 		}
 	];
+	$scope.plant = $scope.plants[0];
+	$scope.area = 2;
+	$scope.render = 3;
+	$scope.unitPrice = 4;
+	$scope.hail = true;
+	$scope.frost = false;
+	$scope.offers = [];
 	$scope.remove = function(index) {
 		$scope.offers.splice(index, 1);
 	};
@@ -41,10 +41,26 @@ function OfferController($scope){
 			}
 		);
 	};
-	$scope.getProductValue = function(render, unitPrice){
-		return render * unitPrice;
+	$scope.getProductValue = function($index){
+		var offer = $scope.offers[$index];
+		return offer.render * offer.unitPrice;
 	};
-	$scope.getInsuranceValue = function(area, render, unitPrice){
-		return $scope.getProductValue(render, unitPrice) * area;
+	$scope.getInsuranceValue = function($index){
+		var offer = $scope.offers[$index];
+		return offer.area * $scope.getProductValue($index);
 	};
+	$scope.getHailFee = function($index){
+		var offer = $scope.offers[$index];
+		if(!offer.hail)
+			return 0;
+		else
+			return offer.plant.hailFactor * $scope.getInsuranceValue($index);
+	};
+	$scope.getFrostFee = function($index){
+		var offer = $scope.offers[$index];
+		if(!offer.frost)
+			return 0;
+		else
+			return offer.plant.frostFactor * $scope.getInsuranceValue($index);
+	}
 }

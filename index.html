@@ -8,7 +8,7 @@
 </head>
 <body ng-controller="OfferController">
 	<h1>Növénybiztosítási ajánlat számítás</h1>
-	<input type="text" ng-model="plant" />
+	<input type="text" ng-model="plant.name" />
 	<input type="number" ng-model="area" />
 	<input type="number" ng-model="render" />
 	<input type="number" ng-model="unitPrice" />
@@ -34,10 +34,10 @@
 		<tbody>
 			<tr ng-repeat="offer in offers">
 				<td>
-					<input ng-model="offer.plant" />
+					<input ng-model="offer.plant.name" />
 				</td>
 				<td>
-					<p>{{offer.code}}</p>
+					<p>{{offer.plant.code}}</p>
 				</td>
 				<td>
 					<input ng-model="offer.area" />
@@ -49,18 +49,18 @@
 					<input ng-model="offer.unitPrice" />
 				</td>
 				<td>
-					<p>{{getProductValue(offer.render, offer.unitPrice)}}</p>
+					<p>{{getProductValue($index)}}</p>
 				</td>
 				<td>
-					<p>{{getInsuranceValue(offer.area, offer.render, offer.unitPrice)}}</p>
+					<p>{{getInsuranceValue($index)}}</p>
 				</td>
 				<td>
 					<input type="checkbox" ng-model="offer.hail" />
-					<p>{{getHailFee()}}</p>
+					<p>{{getHailFee($index)}}</p>
 				</td>
 				<td>
 					<input type="checkbox" ng-model="offer.frost" />
-					<p>{{getFrostFee()}}</p>
+					<p>{{getFrostFee($index)}}</p>
 				</td>
 				<td>
 					<p>{{sumPrice}}</p>
