@@ -1,0 +1,23 @@
+<html ng-app="">
+<head>
+	<title>Your Shopping Cart</title>
+</head>
+<body ng-controller="CartController">
+	<h1>Your Order</h1>
+	<button ng-click="add()">Add Order</button>
+	<input type="text" ng-model="inputText" />
+	<input type="number" ng-model="inputNumber" />
+	Double: <input type="checkbox" ng-model="double" />
+	<div ng-repeat="item in items">
+		<input ng-model="item.title" />
+		<input ng-model="item.quantity" />
+		<span>{{getEndPrice(item.price, item.double) | currency}}</span>
+		<span>{{getEndPrice(item.price, item.double) * item.quantity | currency}}</span>
+		Double: <input type="checkbox" ng-model="item.double" />
+		<button ng-click="remove($index)">Remove</button>
+	</div>
+	<p>{{sum()}}</p>
+	<script src="js/angular.js"></script>
+	<script src="js/script.js"></script>
+</body>
+</html>

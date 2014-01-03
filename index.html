@@ -3,29 +3,75 @@
 <head>
 	<title>Növénybiztosítási ajánlat számítás</title>
 	<meta charset="utf-8" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+	<link rel="stylesheet" href="css/style.css" type="text/css" />
 </head>
 <body ng-controller="OfferController">
-<h1>Növénybiztosítási ajánlat számítás</h1>
-<input type="text" ng-model />
-<input type="checkbox" ng-model />
-<button ng-click="addButtonClick()">Hozzáad</button>
-<table>
-	<th>
-		<td>Megnevezés</td>
-		<td>Hasznosítási kód</td>
-		<td>Termőterület (ha)</td>
-		<td>Hozam (t/ha)</td>
-		<td>Egységár (Ft/t)</td>
-		<td>Termény értéke (Ft/ha)</td>
-		<td>Biztosítási értéke (Ft)</td>
-		<td>Jégeső díjtétel</td>
-		<td>Fagy díjtétel</td>
-		<td>Számított díj összesen (Ft)</td>
-		<td></td>
-	</th>
-	<tr ng-repeat="offer in offers">
-		Itt tartok...
-	</tr>
-</table>
+	<h1>Növénybiztosítási ajánlat számítás</h1>
+	<input type="text" ng-model="plant" />
+	<input type="number" ng-model="area" />
+	<input type="number" ng-model="render" />
+	<input type="number" ng-model="unitPrice" />
+	<input type="checkbox" ng-model="hail" />
+	<input type="checkbox" ng-model="frost" />
+	<button ng-click="add()">Hozzáad</button>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Megnevezés</th>
+				<th>Hasznosítási kód</th>
+				<th>Termőterület (ha)</th>
+				<th>Hozam (t/ha)</th>
+				<th>Egységár (Ft/t)</th>
+				<th>Termény értéke (Ft/ha)</th>
+				<th>Biztosítási értéke (Ft)</th>
+				<th>Jégeső díjtétel</th>
+				<th>Fagy díjtétel</th>
+				<th>Számított díj összesen (Ft)</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="offer in offers">
+				<td>
+					<input ng-model="offer.plant" />
+				</td>
+				<td>
+					<p>{{offer.code}}</p>
+				</td>
+				<td>
+					<input ng-model="offer.area" />
+				</td>
+				<td>
+					<input ng-model="offer.render" />
+				</td>
+				<td>
+					<input ng-model="offer.unitPrice" />
+				</td>
+				<td>
+					<p>{{getProductValue(offer.render, offer.unitPrice)}}</p>
+				</td>
+				<td>
+					<p>{{getInsuranceValue(offer.area, offer.render, offer.unitPrice)}}</p>
+				</td>
+				<td>
+					<input type="checkbox" ng-model="offer.hail" />
+					<p>{{getHailFee()}}</p>
+				</td>
+				<td>
+					<input type="checkbox" ng-model="offer.frost" />
+					<p>{{getFrostFee()}}</p>
+				</td>
+				<td>
+					<p>{{sumPrice}}</p>
+				</td>
+				<td>
+					<button ng-click="remove($index)">Törlés</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<script src="js/angular.js" type="text/javascript"></script>
+	<script src="js/insurance.js" type="text/javascript"></script>
 </body>
 </html>
