@@ -8,7 +8,7 @@
 </head>
 <body ng-controller="OfferController">
 	<h1>Növénybiztosítási ajánlat számítás</h1>
-	<input type="text" ng-model="plant.name" />
+	<select ng-model="plant" ng-options="p.name for p in plants"></select>
 	<input type="number" ng-model="area" />
 	<input type="number" ng-model="render" />
 	<input type="number" ng-model="unitPrice" />
@@ -34,7 +34,7 @@
 		<tbody>
 			<tr ng-repeat="offer in offers">
 				<td>
-					<input ng-model="offer.plant.name" />
+					<select ng-model="offer.plant" ng-options="p.name for p in plants"></select>
 				</td>
 				<td>
 					<p>{{offer.plant.code}}</p>
